@@ -1,6 +1,6 @@
-# Welcome to module-android-[name_module]!
+# Welcome to module-android-network!
 
-[name_module] is an library for [description_module]
+Network is an library for connect your apis
 
 ## Setup
 
@@ -16,7 +16,7 @@ git submodule update
 ```kotlin
 dependencies {
     ...
-    implementation("com.afoxplus.android:[name_module]:1.0.0")
+    implementation("com.afoxplus.android:network:1.0.0")
 }
 ```
 
