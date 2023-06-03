@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.provider.Settings
 import retrofit2.Response
+import java.io.InputStream
 
 
 fun Context?.isConnected(): Boolean {
@@ -24,4 +25,14 @@ fun Context?.isAirplaneModeActive(): Boolean {
 inline fun <T : Any> Response<T>.map(action: (T) -> Unit): Response<T> {
     if (isSuccessful) body()?.run(action)
     return this
+}
+
+internal fun InputStream.convertToString(): String? {
+    return try {
+        this.bufferedReader().use { it.readText() }
+    } catch (exception: Exception) {
+        null
+    } finally {
+        this.close()
+    }
 }
