@@ -18,7 +18,6 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 internal class ApiModule {
-
     @ProductApiBaseURL
     @Provides
     fun provideProductBaseUrl(): String =

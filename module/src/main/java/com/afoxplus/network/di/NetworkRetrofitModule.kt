@@ -13,7 +13,7 @@ import com.afoxplus.network.api.OrderNetworkRetrofit
 import com.afoxplus.network.api.ProductNetworkRetrofit
 import com.afoxplus.network.api.RestaurantNetworkRetrofit
 import com.afoxplus.network.extensions.convertToString
-import com.afoxplus.network.interceptors.BaseInterceptor
+import com.afoxplus.network.api.BaseInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
