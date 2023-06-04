@@ -37,8 +37,8 @@ internal class NetworkRetrofitModule {
         appProperties: AppProperties
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addUniqueInstanceInterceptor(AnnotationsHandlerInterceptor(urlProvider, appProperties))
             .addUniqueInstanceInterceptor(httpLoggingInterceptor)
+            .addUniqueInstanceInterceptor(AnnotationsHandlerInterceptor(urlProvider, appProperties))
             .connectTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)

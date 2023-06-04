@@ -1,7 +1,5 @@
 package com.afoxplus.network.api
 
-import android.os.Build
-import android.util.Log
 import com.afoxplus.network.annotations.EndpointInfo
 import com.afoxplus.network.annotations.ServiceClient
 import com.afoxplus.network.exceptions.UrlException
@@ -27,8 +25,6 @@ internal class AnnotationsHandlerInterceptor(
             else if (endpointInfoAnnotation != null && serviceClientAnnotation != null) {
                 val serviceUrl = urlProvider.get(serviceClientAnnotation.type)
                 val methodUrl = urlProvider.get(endpointInfoAnnotation.type)
-                Log.d("LOG_VALE", "serviceUrl: $serviceUrl")
-                Log.d("LOG_VALE", "methodUrl: $methodUrl")
                 val newUrl = request.url.toString().replace(serviceUrl, methodUrl)
                 val newRequest = request.newBuilder().url(newUrl)
                     .addHeader("device", appProperties.getDeviceData())
