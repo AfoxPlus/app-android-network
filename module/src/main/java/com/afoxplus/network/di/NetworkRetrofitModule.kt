@@ -1,19 +1,12 @@
 package com.afoxplus.network.di
 
-import com.afoxplus.network.api.NetworkInterceptor
-import com.afoxplus.network.api.NetworkOkHttpClient
-import com.afoxplus.network.api.ProductApiBaseURL
 import android.content.Context
 import android.os.Build
 import com.afoxplus.network.annotations.MockService
-import com.afoxplus.network.api.NetworkGsonConverterFactory
-import com.afoxplus.network.api.NetworkHttpLoggingInterceptor
-import com.afoxplus.network.api.OrderApiBaseURL
-import com.afoxplus.network.api.OrderNetworkRetrofit
-import com.afoxplus.network.api.ProductNetworkRetrofit
-import com.afoxplus.network.api.RestaurantNetworkRetrofit
 import com.afoxplus.network.extensions.convertToString
 import com.afoxplus.network.api.BaseInterceptor
+import com.afoxplus.network.api.RetrofitGenerator
+import com.afoxplus.network.api.UrlProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,57 +16,25 @@ import okhttp3.*
 import okhttp3.ResponseBody.Companion.toResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Invocation
-import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 @Module
 @InstallIn(SingletonComponent::class)
 internal class NetworkRetrofitModule {
-
-    @ProductNetworkRetrofit
-    @Provides
-    fun providerProductRetrofit(
-        @ProductApiBaseURL baseUrl: String,
-        @NetworkOkHttpClient client: OkHttpClient,
-        @NetworkGsonConverterFactory gsonConverterFactory: GsonConverterFactory
-    ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .client(client)
-            .addConverterFactory(gsonConverterFactory)
-            .build()
-    }
-
-    @RestaurantNetworkRetrofit
-    @Provides
-    fun providerRestaurantRetrofit(
-        @RestaurantNetworkRetrofit baseUrl: String,
-        @NetworkOkHttpClient client: OkHttpClient,
-        @NetworkGsonConverterFactory gsonConverterFactory: GsonConverterFactory
-    ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .client(client)
-            .addConverterFactory(gsonConverterFactory)
-            .build()
-    }
-
-    @OrderNetworkRetrofit
     @Provides
     fun providerOrderRetrofit(
-        @OrderApiBaseURL baseUrl: String,
-        @NetworkOkHttpClient client: OkHttpClient,
-        @NetworkGsonConverterFactory gsonConverterFactory: GsonConverterFactory
-    ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .client(client)
-            .addConverterFactory(gsonConverterFactory)
-            .build()
+        client: OkHttpClient,
+        gsonConverterFactory: GsonConverterFactory,
+        urlProvider: UrlProvider
+    ): RetrofitGenerator {
+        return RetrofitGenerator(
+            okHttpClient = client,
+            urlProvider = urlProvider,
+            gsonConverterFactory = gsonConverterFactory,
+        )
     }
 
-    @NetworkInterceptor
     @Provides
     fun provideInterceptor(
         @ApplicationContext appContext: Context
@@ -94,11 +55,10 @@ internal class NetworkRetrofitModule {
         } ?: return@BaseInterceptor setUpInterceptor(chain)
     }
 
-    @NetworkOkHttpClient
     @Provides
     fun providerOkHttpClient(
-        @NetworkHttpLoggingInterceptor httpLoggingInterceptor: HttpLoggingInterceptor,
-        @NetworkInterceptor apiInterceptor: Interceptor
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        apiInterceptor: Interceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(60, TimeUnit.SECONDS)
@@ -109,13 +69,11 @@ internal class NetworkRetrofitModule {
             .build()
     }
 
-    @NetworkGsonConverterFactory
     @Provides
     fun providerGsonConverterFactory(): GsonConverterFactory {
         return GsonConverterFactory.create()
     }
 
-    @NetworkHttpLoggingInterceptor
     @Provides
     fun providerHttpLoggingInterceptor(): HttpLoggingInterceptor {
         val loggingInterceptor = HttpLoggingInterceptor()
