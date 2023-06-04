@@ -1,12 +1,11 @@
 package com.afoxplus.network.api
 
+import android.util.Log
 import com.afoxplus.network.annotations.ServiceClient
 import com.afoxplus.network.exceptions.UrlException
-import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import kotlin.reflect.KClass
 
 class RetrofitGenerator constructor(
@@ -22,6 +21,7 @@ class RetrofitGenerator constructor(
             urlProvider.get(type)
         } ?: throw UrlException("Missing ServiceClient annotation for class ${service.name}")
 
+        Log.d("LOG_VALE", "URL: $url")
         return Retrofit.Builder()
             .baseUrl(url)
             .client(okHttpClient)

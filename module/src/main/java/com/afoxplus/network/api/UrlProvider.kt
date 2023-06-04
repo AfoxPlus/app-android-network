@@ -9,12 +9,14 @@ class UrlProvider @Inject constructor(private val urlBuilder: UrlBuilder) {
             Type.API_PRODUCTS -> urlBuilder.productService()
             Type.API_RESTAURANTS -> urlBuilder.restaurantService()
             Type.API_ORDERS -> urlBuilder.orderService()
+            Type.API_ORDERS_V1 -> urlBuilder.orderService(1)
         }
     }
 
     enum class Type {
         API_PRODUCTS,
         API_RESTAURANTS,
-        API_ORDERS
+        API_ORDERS,
+        API_ORDERS_V1,
     }
 }

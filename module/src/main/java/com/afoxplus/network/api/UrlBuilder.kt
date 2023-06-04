@@ -1,5 +1,6 @@
 package com.afoxplus.network.api
 
+import android.util.Log
 import androidx.annotation.RestrictTo
 import com.afoxplus.network.global.AppProperties
 import javax.inject.Inject
@@ -15,6 +16,8 @@ class URlBuilderImpl @Inject constructor(private val appProperties: AppPropertie
 
     override fun productService(version: Int?): String {
         val url = if (appProperties.isAppDebug()) API_URL_PRODUCT_DEV else API_URL_PRODUCT_PROD
+        Log.d("LOG_VALE", "URL: $url")
+        Log.d("LOG_VALE", "URL v: ${url.addVersion(version)}")
         return url.addVersion(version)
     }
 
