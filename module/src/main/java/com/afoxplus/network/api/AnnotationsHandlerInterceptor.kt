@@ -28,6 +28,7 @@ internal class AnnotationsHandlerInterceptor(
                 val newUrl = request.url.toString().replace(serviceUrl, methodUrl)
                 val newRequest = request.newBuilder().url(newUrl)
                     .addHeader("device", appProperties.getDeviceData())
+                    .addHeader("user_uuid", appProperties.getUserUUID())
                     .build()
                 return chain.proceed(newRequest)
             }
