@@ -4,6 +4,7 @@ import android.content.Context
 import com.afoxplus.network.api.AnnotationsHandlerInterceptor
 import com.afoxplus.network.api.RetrofitGenerator
 import com.afoxplus.network.api.UrlProvider
+import com.afoxplus.network.extensions.addUniqueInstanceDebugInterceptor
 import com.afoxplus.network.extensions.addUniqueInstanceInterceptor
 import com.afoxplus.network.global.AppProperties
 import com.chuckerteam.chucker.api.ChuckerInterceptor
@@ -41,7 +42,7 @@ internal class NetworkRetrofitModule {
         @ApplicationContext context: Context
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addUniqueInstanceInterceptor(ChuckerInterceptor(context))
+            .addUniqueInstanceDebugInterceptor(ChuckerInterceptor(context), appProperties)
             .addUniqueInstanceInterceptor(httpLoggingInterceptor)
             .addUniqueInstanceInterceptor(AnnotationsHandlerInterceptor(urlProvider, appProperties))
             .connectTimeout(60, TimeUnit.SECONDS)
