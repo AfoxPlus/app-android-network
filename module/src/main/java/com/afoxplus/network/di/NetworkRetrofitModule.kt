@@ -1,16 +1,13 @@
 package com.afoxplus.network.di
 
-import android.content.Context
 import com.afoxplus.network.api.AnnotationsHandlerInterceptor
 import com.afoxplus.network.api.RetrofitGenerator
 import com.afoxplus.network.api.UrlProvider
 import com.afoxplus.network.extensions.addUniqueInstanceInterceptor
 import com.afoxplus.network.global.AppProperties
-import com.chuckerteam.chucker.api.ChuckerInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
@@ -37,11 +34,9 @@ internal class NetworkRetrofitModule {
     fun providerOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
         urlProvider: UrlProvider,
-        appProperties: AppProperties,
-        @ApplicationContext context: Context
+        appProperties: AppProperties
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addUniqueInstanceInterceptor(ChuckerInterceptor(context))
             .addUniqueInstanceInterceptor(httpLoggingInterceptor)
             .addUniqueInstanceInterceptor(AnnotationsHandlerInterceptor(urlProvider, appProperties))
             .connectTimeout(60, TimeUnit.SECONDS)

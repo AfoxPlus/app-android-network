@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.provider.Settings
+import com.afoxplus.network.global.AppProperties
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Response
@@ -47,5 +48,15 @@ internal fun OkHttpClient.Builder.addUniqueInstanceInterceptor(interceptor: Inte
         }
     }
     this.addInterceptor(interceptor)
+    return this
+}
+
+internal fun OkHttpClient.Builder.addUniqueInstanceDebugInterceptor(
+    interceptor: Interceptor,
+    appProperties: AppProperties
+): OkHttpClient.Builder {
+    if (appProperties.isAppDebug()) {
+        addUniqueInstanceInterceptor(interceptor)
+    }
     return this
 }
