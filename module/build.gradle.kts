@@ -96,6 +96,9 @@ dependencies {
     implementation(Deps.Arch.hiltAndroid)
     kapt(Deps.Arch.hiltCompiler)
 
+    debugImplementation(Deps.Arch.chucker)
+    releaseImplementation(Deps.Arch.chuckerNoOp)
+
     testImplementation(Deps.Test.jUnit)
     androidTestImplementation(Deps.Test.androidJUnit)
     androidTestImplementation(Deps.Test.espresso)
