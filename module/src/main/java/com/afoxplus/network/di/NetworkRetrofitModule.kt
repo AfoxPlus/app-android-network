@@ -6,7 +6,6 @@ import com.afoxplus.network.api.RetrofitGenerator
 import com.afoxplus.network.api.UrlProvider
 import com.afoxplus.network.extensions.addUniqueInstanceInterceptor
 import com.afoxplus.network.global.AppProperties
-import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import dagger.Module
 import dagger.Provides
@@ -42,14 +41,7 @@ internal class NetworkRetrofitModule {
         @ApplicationContext context: Context
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addUniqueInstanceInterceptor(
-                ChuckerInterceptor.Builder(context)
-                    .collector(ChuckerCollector(context))
-                    .maxContentLength(250000L)
-                    .redactHeaders(emptySet())
-                    .alwaysReadResponseBody(false)
-                    .build()
-            )
+            .addUniqueInstanceInterceptor(ChuckerInterceptor(context))
             .addUniqueInstanceInterceptor(httpLoggingInterceptor)
             .addUniqueInstanceInterceptor(AnnotationsHandlerInterceptor(urlProvider, appProperties))
             .connectTimeout(60, TimeUnit.SECONDS)
