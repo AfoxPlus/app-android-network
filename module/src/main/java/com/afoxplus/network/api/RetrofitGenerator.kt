@@ -24,6 +24,7 @@ class RetrofitGenerator constructor(
             .baseUrl(url)
             .client(okHttpClient)
             .addConverterFactory(gsonConverterFactory)
+            .addCallAdapterFactory(NetworkResultCallAdapterFactory.create())
             .build()
             .create(service)
 
