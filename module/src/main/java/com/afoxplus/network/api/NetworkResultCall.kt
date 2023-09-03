@@ -33,7 +33,7 @@ class NetworkResultCall<T : Any>(
             }
 
             override fun onFailure(call: Call<T>, t: Throwable) {
-                val networkResult = NetworkException<T>(t)
+                val networkResult = NetworkResult.Exception<T>(t)
                 callback.onResponse(this@NetworkResultCall, Response.success(networkResult))
             }
         })
@@ -47,13 +47,13 @@ fun <T : Any> handleApi(
         val response = execute()
         val body = response.body()
         if (response.isSuccessful && body != null) {
-            NetworkSuccess(body)
+            NetworkResult.Success(body)
         } else {
-            NetworkError(code = response.code(), message = response.message())
+            NetworkResult.Error(code = response.code(), message = response.message())
         }
     } catch (e: HttpException) {
-        NetworkError(code = e.code(), message = e.message())
+        NetworkResult.Error(code = e.code(), message = e.message())
     } catch (e: Throwable) {
-        NetworkException(e)
+        NetworkResult.Exception(e)
     }
 }
