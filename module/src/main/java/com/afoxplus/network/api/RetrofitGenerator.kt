@@ -27,7 +27,5 @@ class RetrofitGenerator constructor(
             .addCallAdapterFactory(NetworkResultCallAdapterFactory.create())
             .build()
             .create(service)
-
     }
-
 }

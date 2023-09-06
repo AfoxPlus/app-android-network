@@ -1,7 +1,7 @@
 package com.afoxplus.network.api
 
-import retrofit2.CallAdapter
 import retrofit2.Call
+import retrofit2.CallAdapter
 import java.lang.reflect.Type
 
 class NetworkResultCallAdapter(
