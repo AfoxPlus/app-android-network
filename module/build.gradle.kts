@@ -1,7 +1,7 @@
 plugins {
-    id("com.android.library") version "7.3.1"
-    id("org.jetbrains.kotlin.android") version "1.7.20"
-    id("org.jetbrains.kotlin.kapt") version "1.7.20"
+    id("com.android.library") version "8.0.2"
+    id("org.jetbrains.kotlin.android") version "1.8.22"
+    id("org.jetbrains.kotlin.kapt") version "1.8.22"
     id("com.google.dagger.hilt.android") version "2.44.2"
     id("org.jetbrains.kotlin.plugin.parcelize") version "1.7.20"
     id("org.sonarqube") version "3.3"
