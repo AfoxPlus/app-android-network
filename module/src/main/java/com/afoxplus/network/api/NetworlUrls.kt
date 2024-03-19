@@ -1,7 +1,7 @@
 package com.afoxplus.network.api
 
 internal const val API_URL_PRODUCT_DEV =
-    "https://v2cz02rxl5.execute-api.us-east-1.amazonaws.com/dev/"
+    "https://11fdq7nd1m.execute-api.us-east-1.amazonaws.com/dev/"
 internal const val API_URL_PRODUCT_PROD =
     "https://sg7zcr8kbk.execute-api.us-east-1.amazonaws.com/prod/"
 internal const val API_URL_RESTAURANT_DEV =
