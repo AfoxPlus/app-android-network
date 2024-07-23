@@ -1,5 +1,10 @@
 # app-android-network Changelog
 
+## Version 6.1.0
+## Updates
+- Update config gradle
+- Update to build/deploy
+
 ## Version 6.0.1
 ## Added
 - Upgrade Java 11 to Java 17.
