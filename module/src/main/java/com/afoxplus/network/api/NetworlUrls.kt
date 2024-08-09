@@ -12,3 +12,9 @@ internal const val API_URL_ORDERS_DEV =
     "https://06p7qyj3p3.execute-api.us-east-1.amazonaws.com/dev/"
 internal const val API_URL_ORDERS_PROD =
     "https://ounn1fn3sj.execute-api.us-east-1.amazonaws.com/prod/"
+internal const val API_URL_INVITATION_DEV =
+    "https://j1oohlzh54.execute-api.us-east-1.amazonaws.com/dev/"
+internal const val API_URL_INVITATION_PROD =
+    "https://zf5lcpm9y2.execute-api.us-east-1.amazonaws.com/prod/"
+internal const val API_URL_AWS_GATEWAY_DEV = ""
+internal const val API_URL_AWS_GATEWAY_PROD = ""
