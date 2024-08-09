@@ -30,6 +30,14 @@ inline fun <T : Any> Response<T>.map(action: (T) -> Unit): Response<T> {
     return this
 }
 
+inline fun <T : Any> Response<T>.body(
+    onSuccess: (T) -> Unit,
+    noinline onFailed: (T) -> Unit
+): Response<T> {
+    if (isSuccessful) body()?.run(onSuccess) ?: onFailed
+    return this
+}
+
 internal fun InputStream.convertToString(): String? {
     return try {
         this.bufferedReader().use { it.readText() }

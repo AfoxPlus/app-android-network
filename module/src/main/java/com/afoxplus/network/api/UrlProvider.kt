@@ -9,7 +9,9 @@ class UrlProvider @Inject constructor(private val urlBuilder: UrlBuilder) {
             Type.API_PRODUCTS -> urlBuilder.productService()
             Type.API_RESTAURANTS -> urlBuilder.restaurantService()
             Type.API_ORDERS -> urlBuilder.orderService()
+            Type.API_INVITATION -> urlBuilder.invitationService()
             Type.API_ORDERS_V1 -> urlBuilder.orderService(1)
+            Type.AWS_GATEWAY -> urlBuilder.orderService()
         }
     }
 
@@ -18,5 +20,7 @@ class UrlProvider @Inject constructor(private val urlBuilder: UrlBuilder) {
         API_RESTAURANTS,
         API_ORDERS,
         API_ORDERS_V1,
+        API_INVITATION,
+        AWS_GATEWAY
     }
 }
