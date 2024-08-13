@@ -87,19 +87,24 @@ android {
 }
 
 dependencies {
-    implementation(fileTree("libs") { include(listOf("*.jar", "*.aar")) })
+    //Jetpack
     implementation(Deps.Jetpack.kotlin)
     implementation(Deps.Jetpack.core)
     implementation(Deps.Jetpack.appcompat)
-    implementation(Deps.Jetpack.activity)
     implementation(Deps.Jetpack.fragment)
 
+    //Jetpack UI
     implementation(Deps.UI.materialDesign)
     implementation(Deps.UI.constraintLayout)
 
-    implementation(Deps.Arch.coroutinesCore)
+    // Dagger - Hilt
     implementation(Deps.Arch.hiltAndroid)
+    kapt(Deps.Arch.hiltAndroidCompiler)
     kapt(Deps.Arch.hiltCompiler)
+
+    // Coroutines
+    implementation(Deps.Arch.coroutinesCore)
+    implementation(Deps.Arch.coroutinesAndroid)
 
     testImplementation(Deps.Test.jUnit)
     androidTestImplementation(Deps.Test.androidJUnit)

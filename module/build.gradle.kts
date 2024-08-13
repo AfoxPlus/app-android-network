@@ -86,15 +86,18 @@ android {
 }
 
 dependencies {
-    implementation(fileTree("libs") { include(listOf("*.jar", "*.aar")) })
+    //Jetpack
     implementation(Deps.Jetpack.kotlin)
     implementation(Deps.Jetpack.core)
 
+    //Retrofit
     implementation(Deps.Arch.retrofit2)
     implementation(Deps.Arch.gson)
     implementation(Deps.Arch.loggingInterceptor)
 
+    // Dagger - Hilt
     implementation(Deps.Arch.hiltAndroid)
+    kapt(Deps.Arch.hiltAndroidCompiler)
     kapt(Deps.Arch.hiltCompiler)
 
     testImplementation(Deps.Test.jUnit)
