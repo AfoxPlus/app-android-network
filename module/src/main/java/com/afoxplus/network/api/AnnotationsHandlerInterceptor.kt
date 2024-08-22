@@ -26,9 +26,11 @@ internal class AnnotationsHandlerInterceptor(
                 val serviceUrl = urlProvider.get(serviceClientAnnotation.type)
                 val methodUrl = urlProvider.get(endpointInfoAnnotation.type)
                 val newUrl = request.url.toString().replace(serviceUrl, methodUrl)
+                val fcmHeaderToken = if (endpointInfoAnnotation.useFCMToken) appProperties.getUserAuthFCMToken() else ""
                 val newRequest = request.newBuilder().url(newUrl)
                     .addHeader("device", appProperties.getDeviceData())
                     .addHeader("user_uuid", appProperties.getUserUUID())
+                    .addHeader("user_fcm_token", fcmHeaderToken)
                     .build()
                 return chain.proceed(newRequest)
             }
