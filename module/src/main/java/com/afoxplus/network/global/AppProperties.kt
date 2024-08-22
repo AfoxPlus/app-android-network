@@ -5,4 +5,5 @@ interface AppProperties {
     fun getDeviceData(): String
     fun getUserUUID(): String
     fun getCurrencyID(): String
+    fun getUserAuthFCMToken(): String
 } 
