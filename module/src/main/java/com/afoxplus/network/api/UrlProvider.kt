@@ -11,7 +11,7 @@ class UrlProvider @Inject constructor(private val urlBuilder: UrlBuilder) {
             Type.API_ORDERS -> urlBuilder.orderService()
             Type.API_INVITATION -> urlBuilder.invitationService()
             Type.API_ORDERS_V1 -> urlBuilder.orderService(1)
-            Type.AWS_GATEWAY -> urlBuilder.orderService()
+            Type.AWS_BACKEND_DRIVEN_UI -> urlBuilder.awsBackendDriveUI()
         }
     }
 
@@ -21,6 +21,6 @@ class UrlProvider @Inject constructor(private val urlBuilder: UrlBuilder) {
         API_ORDERS,
         API_ORDERS_V1,
         API_INVITATION,
-        AWS_GATEWAY
+        AWS_BACKEND_DRIVEN_UI
     }
 }

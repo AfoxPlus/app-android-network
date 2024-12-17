@@ -9,7 +9,7 @@ interface UrlBuilder {
     fun restaurantService(version: Int? = null): String
     fun orderService(version: Int? = null): String
     fun invitationService(version: Int? = null): String
-    fun awsGateway(version: Int? = null): String
+    fun awsBackendDriveUI(version: Int? = null): String
 }
 
 @RestrictTo(RestrictTo.Scope.LIBRARY)
@@ -37,9 +37,9 @@ class URlBuilderImpl @Inject constructor(private val appProperties: AppPropertie
         return url.addVersion(version)
     }
 
-    override fun awsGateway(version: Int?): String {
+    override fun awsBackendDriveUI(version: Int?): String {
         val url =
-            if (appProperties.isAppDebug()) API_URL_AWS_GATEWAY_DEV else API_URL_AWS_GATEWAY_PROD
+            if (appProperties.isAppDebug()) API_URL_AWS_BDUI_DEV else API_URL_AWS_BDUI_PROD
         return url.addVersion(version)
     }
 
