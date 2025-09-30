@@ -1,9 +1,9 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
-    id("com.google.dagger.hilt.android")
-    id("org.jetbrains.kotlin.plugin.parcelize")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.devtools.ksp)
+    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.jetbrains.kotlin.plugin.parcelize)
     id("org.sonarqube") version "3.3"
     id("jacoco")
 }
@@ -87,18 +87,18 @@ android {
 
 dependencies {
     //Jetpack
-    implementation(Deps.Jetpack.kotlin)
-    implementation(Deps.Jetpack.core)
+    implementation(libs.androidx.core.ktx)
 
     //Retrofit
-    implementation(Deps.Arch.retrofit2)
-    implementation(Deps.Arch.gson)
-    implementation(Deps.Arch.loggingInterceptor)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
     // Dagger - Hilt
-    implementation(Deps.Arch.hiltAndroid)
-    kapt(Deps.Arch.hiltAndroidCompiler)
-    kapt(Deps.Arch.hiltCompiler)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+    ksp(libs.androidx.hilt.compiler)
 
     testImplementation(Deps.Test.jUnit)
     androidTestImplementation(Deps.Test.androidJUnit)
