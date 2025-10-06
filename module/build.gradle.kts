@@ -17,12 +17,11 @@ apply {
 
 android {
     namespace = "com.afoxplus.network"
-    compileSdk = Versions.compileSdkVersion
+    compileSdk = ConfigureApp.Versions.compileSdkVersion
 
     defaultConfig {
-        minSdk = Versions.minSdkVersion
-        targetSdk = Versions.targetSdkVersion
-        testInstrumentationRunner = Versions.testInstrumentationRunner
+        minSdk = ConfigureApp.Versions.minSdkVersion
+        testInstrumentationRunner = ConfigureApp.Versions.testInstrumentationRunner
         consumerProguardFiles("consumer-rules.pro")
         renderscriptSupportModeEnabled = true
     }
