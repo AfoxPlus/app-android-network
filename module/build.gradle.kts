@@ -58,8 +58,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
-
     lint {
         disable.addAll(
             listOf(
@@ -99,12 +97,11 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.androidx.hilt.compiler)
 
-    testImplementation(Deps.Test.jUnit)
-    androidTestImplementation(Deps.Test.androidJUnit)
-    androidTestImplementation(Deps.Test.espresso)
+    // Test
+    testImplementation(libs.bundles.unit.test)
 
     // Chucker
-    debugImplementation(Deps.Arch.chucker)
-    "stagingImplementation"(Deps.Arch.chucker)
-    releaseImplementation(Deps.Arch.chuckerNoOp)
+    debugImplementation(libs.chucker.library)
+    "stagingImplementation"(libs.chucker.library)
+    releaseImplementation(libs.chucker.library.no.op)
 }
