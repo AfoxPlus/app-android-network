@@ -58,6 +58,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
+    kotlin { jvmToolchain(ConfigureApp.Versions.jdkVersion) }
+
     lint {
         disable.addAll(
             listOf(
